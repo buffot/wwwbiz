@@ -12,8 +12,9 @@ use Mix.Config
 config :wwwbiz, WwwbizWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
-
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  url: [scheme: "https", host: "pacific-refuge-69697", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
 # Do not print debug messages in production
 config :logger, level: :info
 
@@ -65,7 +66,3 @@ config :logger, level: :info
 #
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.
-
-# Finally import the config/prod.secret.exs which should be versioned
-# separately.
-import_config "prod.secret.exs"
